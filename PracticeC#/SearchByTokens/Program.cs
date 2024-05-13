@@ -29,16 +29,16 @@ class Solution
         //generate args to test 
         var lines = new List<string[]>
          {
-             new string[] { "weight", "FirstName", "100" },
-             new string[] { "weight", "LastName", "100" },
-             new string[] { "weight", "Address", "100" },
-             new string[] { "customer", "John", "Doe", "123 Main Street" },
+             new string[] { "weight", "FirstName", "20" },
+             new string[] { "weight", "LastName", "40" },
+             new string[] { "weight", "Address", "80" },
+             new string[] { "customer", "John", "Doe", "123 Main St" },
              //new string[] { "customer", "Jane", "Smith", "456 Elm St" },
              //new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
              //new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
              //new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
              //new string[] { "customer", "Carol", "Smith", "456 4th South St" },
-             new string[] { "search", "John Doe" }
+             new string[] { "search", "123 Main St" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
