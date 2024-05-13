@@ -30,15 +30,15 @@ class Solution
         var lines = new List<string[]>
          {
              new string[] { "weight", "FirstName", "100" },
-             new string[] { "weight", "LastName", "200" },
-             new string[] { "weight", "Address", "300" },
+             new string[] { "weight", "LastName", "100" },
+             new string[] { "weight", "Address", "100" },
              new string[] { "customer", "John", "Doe", "123 Main Street" },
              //new string[] { "customer", "Jane", "Smith", "456 Elm St" },
              //new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
              //new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
              //new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
              //new string[] { "customer", "Carol", "Smith", "456 4th South St" },
-             new string[] { "search", "John Doe 123 Main Street" }
+             new string[] { "search", "John Doe" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -112,7 +112,7 @@ class Solution
                 //process per each weight 
 
                 //if full match by token then return weight 400% per field
-                var IsFullMatchFirstName = CheckFullMatch(customer.FirstName, token, weights["FirstName"], ref score);
+                var IsFullMatchFirstName = CheckFullMatch(customer.FirstName, searchString, weights["FirstName"], ref score);
 
                 //if no full match then check for partial match
                 if (!IsFullMatchFirstName)
@@ -122,7 +122,7 @@ class Solution
                 }
 
                 //if full match by token then return weight 400% per field
-                var IsFullMatchLastName = CheckFullMatch(customer.LastName, token, weights["LastName"], ref score);
+                var IsFullMatchLastName = CheckFullMatch(customer.LastName, searchString, weights["LastName"], ref score);
 
                 //if no full match then check for partial match
                 if (!IsFullMatchLastName)
@@ -132,7 +132,7 @@ class Solution
                 }
 
                 //if full match by token then return weight 400% per field
-                var IsFullMatchAddress = CheckFullMatch(customer.Address, token, weights["Address"], ref score);
+                var IsFullMatchAddress = CheckFullMatch(customer.Address, searchString, weights["Address"], ref score);
 
                 //if no full match then check for partial match
                 if (!IsFullMatchAddress)
@@ -162,12 +162,12 @@ class Solution
         return results.OrderByDescending(r => r.Score).Take(5).ToList();
     }
 
-    private static bool CheckFullMatch(string customerField, string token, int weight, ref int score)
+    private static bool CheckFullMatch(string customerField, string searchString, int weight, ref int score)
     {
         var increment = 0;
 
         //if token is exact match to customer field then return 400% weight
-        if (token.Equals(customerField, StringComparison.OrdinalIgnoreCase))
+        if (searchString.Equals(customerField, StringComparison.OrdinalIgnoreCase))
         {
             increment += weight * 4;
         }
@@ -244,17 +244,22 @@ class Solution
         { "Address", customer.Address.ToLower() }
     };
 
+
         foreach (var field in customerFields)
         {
-            foreach (var token in searchTokens)
+            // Full match
+            if (searchString.Split(' ').All(field.Value.Contains))
             {
-                if (field.Value.Equals(token.ToLower(), StringComparison.OrdinalIgnoreCase)) // Full match
+                score += weights[field.Key] * 4;
+            }
+            else
+            {
+                foreach (var token in searchTokens)
                 {
-                    score += weights[field.Key] * 4;
-                }
-                else if (field.Value.Contains(token.ToLower())) // Partial match
-                {
-                    score += weights[field.Key] * 2;
+                    if (field.Value.Contains(token.ToLower())) // Partial match
+                    {
+                        score += weights[field.Key] * 2;
+                    }
                 }
             }
 
