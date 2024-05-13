@@ -30,15 +30,15 @@ class Solution
         var lines = new List<string[]>
          {
              new string[] { "weight", "FirstName", "10" },
-             new string[] { "weight", "LastName", "50" },
-             new string[] { "weight", "Address", "100" },
+             new string[] { "weight", "LastName", "40" },
+             new string[] { "weight", "Address", "80" },
              new string[] { "customer", "John", "Doe", "123 Main St" },
              new string[] { "customer", "Jane", "Smith", "456 Elm St" },
-             new string[] { "customer", "Jennifer", "Todd", "333 4th South St" },
-             new string[] { "customer", "Jenni", "Todd", "333 4th South St" },
-             new string[] { "customer", "Daisy", "Todd", "333 4th South St" },
-             new string[] { "customer", "Carol", "Plot", "301 4th South St" },
-             new string[] { "search", "Jen Todd 333 4th South St" }
+             new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
+             new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
+             new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
+             new string[] { "customer", "Carol", "Smith", "301 4th South St" },
+             new string[] { "search", "Jen Doe 456 Elm St" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -140,15 +140,15 @@ class Solution
             //if token matches anywhere in search string then return 100% of weight
             if (customer.FirstName.Contains(token))
             {
-                score += weights["FirstName"];
+                score += weights["FirstName"] * 2;
             }
             if (customer.LastName.Contains(token))
             {
-                score += weights["LastName"];
+                score += weights["LastName"] * 2;
             }
             if (customer.Address.Contains(token))
             {
-                score += weights["Address"];
+                score += weights["Address"] * 2;
             }
         }
     }
@@ -158,17 +158,17 @@ class Solution
         //if token partial match to customer first name then return 200% weight
         if (tokens.Contains(customer.FirstName))
         {
-            score += weights["FirstName"] * 2;
+            score += weights["FirstName"];
         }
         //if token partial match to customer last name then return 200% weight
         if (tokens.Contains(customer.LastName))
         {
-            score += weights["LastName"] * 2;
+            score += weights["LastName"];
         }
         //if token partial match to customer address then return 200% weight
         if (tokens.Contains(customer.Address))
         {
-            score += weights["Address"] * 2;
+            score += weights["Address"];
         }
     }
 
