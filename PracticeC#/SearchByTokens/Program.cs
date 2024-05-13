@@ -33,12 +33,12 @@ class Solution
              new string[] { "weight", "LastName", "200" },
              new string[] { "weight", "Address", "300" },
              new string[] { "customer", "John", "Doe", "123 Main St" },
-             new string[] { "customer", "Jane", "Smith", "456 Elm St" },
-             new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
-             new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
-             new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
-             new string[] { "customer", "Carol", "Smith", "301 4th South St" },
-             new string[] { "search", "Smith" }
+             //new string[] { "customer", "Jane", "Smith", "456 Elm St" },
+             //new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
+             //new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
+             //new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
+             //new string[] { "customer", "Carol", "Smith", "456 4th South St" },
+             new string[] { "search", "John Doe 456 Sunset Strip" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -90,8 +90,7 @@ class Solution
 
         var searchTokens = TokenizeSearchString(searchString);
 
-        //max of one token match per field
-        var maxWeights = weights.Values.Max() * 4;
+
 
         foreach (var customer in customers)
         {
@@ -99,15 +98,36 @@ class Solution
 
             foreach (var token in searchTokens)
             {
+                //process per each weight 
+
                 //if full match by token then return weight 400% per field
-                var fullMatchIncrement = CheckFullMatch(customer, token, weights, ref score);
+                var IsFullMatch = CheckFullMatch(customer.FirstName, token, weights["FirstName"], ref score);
 
                 //if no full match then check for partial match
-                //TODO: here we possibly counting partial match twice, need to refactor
-                if (fullMatchIncrement < maxWeights)
+                if (!IsFullMatch)
                 {
                     //if partial match by token then return weight 200% per field
-                    CheckPartialMatch(customer, token, weights, ref score);
+                    CheckPartialMatch(customer.FirstName, token, weights["FirstName"], ref score);
+                }
+
+                //if full match by token then return weight 400% per field
+                IsFullMatch = CheckFullMatch(customer.LastName, token, weights["LastName"], ref score);
+
+                //if no full match then check for partial match
+                if (!IsFullMatch)
+                {
+                    //if partial match by token then return weight 200% per field
+                    CheckPartialMatch(customer.LastName, token, weights["LastName"], ref score);
+                }
+
+                //if full match by token then return weight 400% per field
+                IsFullMatch = CheckFullMatch(customer.Address, token, weights["Address"], ref score);
+
+                //if no full match then check for partial match
+                if (!IsFullMatch)
+                {
+                    //if partial match by token then return weight 200% per field
+                    CheckPartialMatch(customer.Address, token, weights["Address"], ref score);
                 }
             }
 
@@ -131,41 +151,27 @@ class Solution
         return results.OrderByDescending(r => r.Score).Take(5).ToList();
     }
 
-    private static int CheckFullMatch(Customer customer, string token, Dictionary<string, int> weights, ref int score)
+    private static bool CheckFullMatch(string customerField, string token, int weight, ref int score)
     {
         var increment = 0;
+        var maxWeight = weight * 4;
+
         //if token is exact match to customer field then return 400% weight
-        if (token.Equals(customer.FirstName, StringComparison.OrdinalIgnoreCase))
+        if (token.Equals(customerField, StringComparison.OrdinalIgnoreCase))
         {
-            increment += weights["FirstName"] * 4;
-        }
-        if (token.Equals(customer.LastName, StringComparison.OrdinalIgnoreCase))
-        {
-            increment += weights["LastName"] * 4;
-        }
-        if (token.Equals(customer.Address, StringComparison.OrdinalIgnoreCase))
-        {
-            increment += weights["Address"] * 4;
+            increment += weight * 4;
         }
 
         score += increment;
-        return increment;
+        return increment <= maxWeight;
     }
 
-    private static void CheckPartialMatch(Customer customer, string token, Dictionary<string, int> weights, ref int score)
+    private static void CheckPartialMatch(string customerField, string token, int weight, ref int score)
     {
         //if customer field has any partial match to token then return 200% of weight
-        if (customer.FirstName.Contains(token))
+        if (customerField.Contains(token))
         {
-            score += weights["FirstName"] * 2;
-        }
-        if (customer.LastName.Contains(token))
-        {
-            score += weights["LastName"] * 2;
-        }
-        if (customer.Address.Contains(token))
-        {
-            score += weights["Address"] * 2;
+            score += weight * 2;
         }
     }
 
