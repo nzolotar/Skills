@@ -107,33 +107,29 @@ class Solution
         {
             int score = 0;
 
+            //if full match by token then return weight 400% per field
+            var IsFullMatchFirstName = CheckFullMatch(customer.FirstName, searchString, weights["FirstName"], ref score);
+
+            //if full match by token then return weight 400% per field
+            var IsFullMatchLastName = CheckFullMatch(customer.LastName, searchString, weights["LastName"], ref score);
+
+            //if full match by token then return weight 400% per field
+            var IsFullMatchAddress = CheckFullMatch(customer.Address, searchString, weights["Address"], ref score);
+
             foreach (var token in searchTokens)
             {
-                //process per each weight 
-
-                //if full match by token then return weight 400% per field
-                var IsFullMatchFirstName = CheckFullMatch(customer.FirstName, searchString, weights["FirstName"], ref score);
-
                 //if no full match then check for partial match
                 if (!IsFullMatchFirstName)
                 {
                     //if partial match by token then return weight 200% per field
                     CheckPartialMatch(customer.FirstName, token, weights["FirstName"], ref score);
                 }
-
-                //if full match by token then return weight 400% per field
-                var IsFullMatchLastName = CheckFullMatch(customer.LastName, searchString, weights["LastName"], ref score);
-
                 //if no full match then check for partial match
                 if (!IsFullMatchLastName)
                 {
                     //if partial match by token then return weight 200% per field
                     CheckPartialMatch(customer.LastName, token, weights["LastName"], ref score);
                 }
-
-                //if full match by token then return weight 400% per field
-                var IsFullMatchAddress = CheckFullMatch(customer.Address, searchString, weights["Address"], ref score);
-
                 //if no full match then check for partial match
                 if (!IsFullMatchAddress)
                 {
