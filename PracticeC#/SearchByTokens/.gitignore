@@ -30,6 +30,11 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+.vs/SearchByTokens/v17
+
+
+#ignore for obj and v17
+obj/
 
 
 ### *** required entries below ***
