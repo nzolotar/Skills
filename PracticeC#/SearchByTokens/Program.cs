@@ -75,8 +75,9 @@ class Solution
     {
         var results = new List<SearchResult>();
         var searchTokens = TokenizeSearchString(searchString);
-        //sum of all weights into var 
-        var maxweights = weights.Values.Sum() * 4;
+
+        //max of all weights
+        var maxWeights = weights.Values.Sum() * 4;
 
         foreach (var customer in customers)
         {
@@ -85,14 +86,15 @@ class Solution
             //if full match by token then return weight 400% per field
             CheckFullMatch(customer, searchTokens, weights, ref score);
 
-            if (score != maxweights)
+            //if no full match then check for partial match
+            if (score != maxWeights)
             {
                 //if partial match by token then return weight 200% per field
                 CheckPartialMatch(customer, searchTokens, weights, ref score);
 
                 if (score == 0)
                 {
-                    //if no partial match then check for any match
+                    //if no partial match then check for any match and return weight 100% per field
                     CheckAnyMatch(customer, searchTokens, weights, ref score);
                 }
             }
