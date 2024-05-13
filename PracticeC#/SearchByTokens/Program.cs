@@ -29,9 +29,9 @@ class Solution
         //generate args to test 
         var lines = new List<string[]>
          {
-             new string[] { "weight", "FirstName", "10" },
-             new string[] { "weight", "LastName", "40" },
-             new string[] { "weight", "Address", "80" },
+             new string[] { "weight", "FirstName", "100" },
+             new string[] { "weight", "LastName", "200" },
+             new string[] { "weight", "Address", "300" },
              new string[] { "customer", "John", "Doe", "123 Main St" },
              new string[] { "customer", "Jane", "Smith", "456 Elm St" },
              new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
