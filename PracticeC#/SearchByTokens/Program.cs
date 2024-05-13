@@ -234,6 +234,8 @@ class Solution
     static int CalculateScore(Dictionary<string, int> weights, Customer customer, List<string> searchTokens, string searchString)
     {
         int score = 0;
+
+        //setting dictionary for customer fields so can pull weights based on field
         var customerFields = new Dictionary<string, string>
     {
         { "FirstName", customer.FirstName.ToLower() },
