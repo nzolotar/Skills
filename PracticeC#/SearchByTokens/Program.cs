@@ -255,7 +255,10 @@ class Solution
                 {
                     score += weights[field.Key] * 2;
                 }
-                else
+            }
+
+            if (score == 0)
+            {
                 {
                     if (searchString.Split(' ').Any(field.Value.Contains)) // Any match
                     {
