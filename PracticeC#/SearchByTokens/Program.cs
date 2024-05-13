@@ -38,7 +38,7 @@ class Solution
              new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
              new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
              new string[] { "customer", "Carol", "Smith", "301 4th South St" },
-             new string[] { "search", "Jen Doe 456 Elm St" }
+             new string[] { "search", " " }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -71,9 +71,23 @@ class Solution
         Console.ReadKey();
     }
 
+    /*
+    To complete this implementation, we need to write the Search function which will:
+    Tokenize the search string.
+    Compare each token against the properties of each customer.
+    Assign scores based on weights given to each matching attribute.
+    Return the list of top 5 results sorted by their scores.
+    */
     static List<SearchResult> Search(Dictionary<string, int> weights, List<Customer> customers, string searchString)
     {
         var results = new List<SearchResult>();
+
+        //check for empty search string
+        if (string.IsNullOrWhiteSpace(searchString))
+        {
+            return results;
+        }
+
         var searchTokens = TokenizeSearchString(searchString);
 
         //max of all weights
@@ -117,18 +131,16 @@ class Solution
     {
         foreach (var token in tokens)
         {
-            //if token exact match to customer first name then return 400% weight
-            if (token.Equals(customer.FirstName))
+            //if token is exact match to customer field then return 400% weight
+            if (token.Equals(customer.FirstName, StringComparison.OrdinalIgnoreCase))
             {
                 score += weights["FirstName"] * 4;
             }
-            //if token exact match to customer last name then return 400% weight
-            if (token.Equals(customer.LastName))
+            if (token.Equals(customer.LastName, StringComparison.OrdinalIgnoreCase))
             {
                 score += weights["LastName"] * 4;
             }
-            //if token exact match to customer address then return 400% weight
-            if (token.Equals(customer.Address))
+            if (token.Equals(customer.Address, StringComparison.OrdinalIgnoreCase))
             {
                 score += weights["Address"] * 4;
             }
@@ -139,7 +151,7 @@ class Solution
     {
         foreach (var token in tokens)
         {
-            //if token matches anywhere in search string then return 100% of weight
+            //if customer field has any partial match to token then return 200% of weight
             if (customer.FirstName.Contains(token))
             {
                 score += weights["FirstName"] * 2;
@@ -157,17 +169,15 @@ class Solution
 
     private static void CheckAnyMatch(Customer customer, List<string> tokens, Dictionary<string, int> weights, ref int score)
     {
-        //if token partial match to customer first name then return 200% weight
+        //if token partial match to customer first name then return 100% weight
         if (tokens.Contains(customer.FirstName))
         {
             score += weights["FirstName"];
         }
-        //if token partial match to customer last name then return 200% weight
         if (tokens.Contains(customer.LastName))
         {
             score += weights["LastName"];
         }
-        //if token partial match to customer address then return 200% weight
         if (tokens.Contains(customer.Address))
         {
             score += weights["Address"];
