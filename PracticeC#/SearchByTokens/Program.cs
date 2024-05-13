@@ -82,6 +82,7 @@ class Solution
         Console.ReadKey();
     }
 
+    #region "Original version"
     /*
     To complete this implementation, we need to write the Search function which will:
     Tokenize the search string.
@@ -111,30 +112,30 @@ class Solution
                 //process per each weight 
 
                 //if full match by token then return weight 400% per field
-                var IsFullMatch = CheckFullMatch(customer.FirstName, token, weights["FirstName"], ref score);
+                var IsFullMatchFirstName = CheckFullMatch(customer.FirstName, token, weights["FirstName"], ref score);
 
                 //if no full match then check for partial match
-                if (!IsFullMatch)
+                if (!IsFullMatchFirstName)
                 {
                     //if partial match by token then return weight 200% per field
                     CheckPartialMatch(customer.FirstName, token, weights["FirstName"], ref score);
                 }
 
                 //if full match by token then return weight 400% per field
-                IsFullMatch = CheckFullMatch(customer.LastName, token, weights["LastName"], ref score);
+                var IsFullMatchLastName = CheckFullMatch(customer.LastName, token, weights["LastName"], ref score);
 
                 //if no full match then check for partial match
-                if (!IsFullMatch)
+                if (!IsFullMatchLastName)
                 {
                     //if partial match by token then return weight 200% per field
                     CheckPartialMatch(customer.LastName, token, weights["LastName"], ref score);
                 }
 
                 //if full match by token then return weight 400% per field
-                IsFullMatch = CheckFullMatch(customer.Address, token, weights["Address"], ref score);
+                var IsFullMatchAddress = CheckFullMatch(customer.Address, token, weights["Address"], ref score);
 
                 //if no full match then check for partial match
-                if (!IsFullMatch)
+                if (!IsFullMatchAddress)
                 {
                     //if partial match by token then return weight 200% per field
                     CheckPartialMatch(customer.Address, token, weights["Address"], ref score);
@@ -164,7 +165,6 @@ class Solution
     private static bool CheckFullMatch(string customerField, string token, int weight, ref int score)
     {
         var increment = 0;
-        var maxWeight = weight * 4;
 
         //if token is exact match to customer field then return 400% weight
         if (token.Equals(customerField, StringComparison.OrdinalIgnoreCase))
@@ -173,7 +173,7 @@ class Solution
         }
 
         score += increment;
-        return increment <= maxWeight;
+        return increment > 0;
     }
 
     private static void CheckPartialMatch(string customerField, string token, int weight, ref int score)
@@ -209,8 +209,9 @@ class Solution
             .Where(token => token.Length >= 3)
             .ToList();
     }
+    #endregion
 
-    /* OPTIMIZED VERSION BELOW *******/
+    #region "OPTIMIZED version"
     static List<SearchResult> SearchOptimized(Dictionary<string, int> weights, List<Customer> customers, string searchString)
     {
         if (string.IsNullOrWhiteSpace(searchString))
@@ -247,16 +248,17 @@ class Solution
         {
             foreach (var token in searchTokens)
             {
-                if (field.Value.Equals(token, StringComparison.OrdinalIgnoreCase)) // Full match
+                if (field.Value.Equals(token.ToLower(), StringComparison.OrdinalIgnoreCase)) // Full match
                 {
                     score += weights[field.Key] * 4;
                 }
-                else if (field.Value.Contains(token)) // Partial match
+                else if (field.Value.Contains(token.ToLower())) // Partial match
                 {
                     score += weights[field.Key] * 2;
                 }
             }
 
+            //if no full or partial match then check for any match and return weight 100% per field
             if (score == 0)
             {
                 {
@@ -270,6 +272,6 @@ class Solution
 
         return score;
     }
-
+    #endregion
 
 }
