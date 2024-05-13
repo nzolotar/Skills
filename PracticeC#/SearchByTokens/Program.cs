@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Solution;
+﻿namespace Solution;
 
 public class Customer
 {
@@ -18,12 +13,15 @@ public class SearchResult
     public int Score { get; set; }
 }
 
-class Solution {
-    static void Main(string[] args) {
+class Solution
+{
+    static void Main(string[] args)
+    {
         using var stdinStream = Console.OpenStandardInput();
         using var stdin = new StreamReader(stdinStream);
         var lines = stdin.ReadToEnd().Split(Environment.NewLine)
-            .Select(l => {
+            .Select(l =>
+            {
                 return l.Split(',');
             })
             .ToList();
@@ -32,17 +30,18 @@ class Solution {
             .ToDictionary(x => x[1], x => int.Parse(x[2]));
 
         var customers = lines.Where(l => l[0] == "customer")
-            .Select(l => new Customer {
+            .Select(l => new Customer
+            {
                 FirstName = l[1],
                 LastName = l[2],
                 Address = l[3]
             })
             .ToList();
-        
+
         var searchString = lines.Where(l => l[0] == "search")
             .Select(l => l[1])
             .First();
-            
+
         // perform the search
         var searchResults = Search(weights, customers, searchString);
 
@@ -52,14 +51,14 @@ class Solution {
             Console.WriteLine($"{result.Customer.FirstName} {result.Customer.LastName} {result.Customer.Address} - Score: {result.Score}");
         }
     }
-    
+
     static List<SearchResult> Search(Dictionary<string, int> weights, List<Customer> customers, string searchString)
     {
         var results = new List<SearchResult>();
-        
+
         // TODO: Add your search implementation here
         throw new NotImplementedException();
-        
+
         // return your results
         return results;
     }
