@@ -144,7 +144,7 @@ class Solution
             //if no full or partial match then check for any match and return weight 100% per field
             if (score == 0)
             {
-                CheckAnyMatch(customer, searchTokens, weights, ref score);
+                CheckAnyMatch(customer, searchString, weights, ref score);
             }
 
             if (score > 0)
@@ -185,18 +185,18 @@ class Solution
         }
     }
 
-    private static void CheckAnyMatch(Customer customer, List<string> tokens, Dictionary<string, int> weights, ref int score)
+    private static void CheckAnyMatch(Customer customer, string searchString, Dictionary<string, int> weights, ref int score)
     {
         //if token partial match to customer first name then return 100% weight
-        if (tokens.Contains(customer.FirstName))
+        if (searchString.Contains(customer.FirstName))
         {
             score += weights["FirstName"];
         }
-        if (tokens.Contains(customer.LastName))
+        if (searchString.Contains(customer.LastName))
         {
             score += weights["LastName"];
         }
-        if (tokens.Contains(customer.Address))
+        if (searchString.Contains(customer.Address))
         {
             score += weights["Address"];
         }
