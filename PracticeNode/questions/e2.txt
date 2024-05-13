@@ -1,0 +1,23 @@
+Given an input integer n, create a while loop that utilizes arithmetic to store the frequency of each digit 
+present in n in a dictionary frequency_map. The input number n will be provided as a numeric data type, not 
+a string. For each loop iteration, you must update frequency_map before reducing n.
+
+Arrange the pseudocode steps below into the correct order to create a valid solution for the above task.
+
+digit = n mod 10
+if digit is not in frequency_map keys
+n = integer part of (n / 10)
+else add 1 to the value of digit in frequency_map
+while n is greater than 0
+initialize an empty dictionary frequency_map
+add digit to frequency_map with an initial value of 1
+
+Correct arrangement:
+
+initialize an empty dictionary frequency_map
+while n is greater than 0
+digit = n mod 10
+if digit is not in frequency_map keys
+add digit to frequency_map with an initial value of 1
+else add 1 to the value of digit in frequency_map
+n = integer part of (n / 10)

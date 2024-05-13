@@ -1,0 +1,1 @@
+Please create a pseudocode function that can check if a given number n is prime or not, where n > 1. evaluate the time complexity of this algorithm
