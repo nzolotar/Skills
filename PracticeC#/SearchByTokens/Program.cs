@@ -32,13 +32,13 @@ class Solution
              new string[] { "weight", "FirstName", "100" },
              new string[] { "weight", "LastName", "200" },
              new string[] { "weight", "Address", "300" },
-             new string[] { "customer", "John", "Doe", "123 Main St" },
+             new string[] { "customer", "John", "Doe", "123 Main Street" },
              //new string[] { "customer", "Jane", "Smith", "456 Elm St" },
              //new string[] { "customer", "Jennifer", "Doe", "333 4th South St" },
              //new string[] { "customer", "Jenni", "Doe", "333 4th South St" },
              //new string[] { "customer", "Daisy", "Doe", "333 4th South St" },
              //new string[] { "customer", "Carol", "Smith", "456 4th South St" },
-             new string[] { "search", "John Doe 456 Sunset Strip" }
+             new string[] { "search", "John Doe 123 Main Street" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -67,7 +67,18 @@ class Solution
         {
             Console.WriteLine($"{result.Customer.FirstName} {result.Customer.LastName} {result.Customer.Address} - Score: {result.Score}");
         }
+        Console.WriteLine($"----");
+
+        // perform the search
+        var searchResultsOptimized = SearchOptimized(weights, customers, searchString);
+
+        // display the results
+        foreach (var result in searchResultsOptimized)
+        {
+            Console.WriteLine($"* {result.Customer.FirstName} {result.Customer.LastName} {result.Customer.Address} - Score: {result.Score}");
+        }
         //keep console app running until key press
+        Console.WriteLine($"----");
         Console.ReadKey();
     }
 
@@ -78,6 +89,7 @@ class Solution
     Assign scores based on weights given to each matching attribute.
     Return the list of top 5 results sorted by their scores.
     */
+
     static List<SearchResult> Search(Dictionary<string, int> weights, List<Customer> customers, string searchString)
     {
         var results = new List<SearchResult>();
@@ -89,8 +101,6 @@ class Solution
         }
 
         var searchTokens = TokenizeSearchString(searchString);
-
-
 
         foreach (var customer in customers)
         {
@@ -199,4 +209,62 @@ class Solution
             .Where(token => token.Length >= 3)
             .ToList();
     }
+
+    /* OPTIMIZED VERSION BELOW *******/
+    static List<SearchResult> SearchOptimized(Dictionary<string, int> weights, List<Customer> customers, string searchString)
+    {
+        if (string.IsNullOrWhiteSpace(searchString))
+        {
+            return new List<SearchResult>();
+        }
+
+        var searchTokens = TokenizeSearchString(searchString);
+
+        return customers
+           .Select(customer => new SearchResult
+           {
+               Customer = customer,
+               Score = CalculateScore(weights, customer, searchTokens, searchString)
+           })
+        .Where(result => result.Score > 0)
+        .OrderByDescending(result => result.Score)
+        .Take(5)
+        .ToList();
+    }
+    static int CalculateScore(Dictionary<string, int> weights, Customer customer, List<string> searchTokens, string searchString)
+    {
+        int score = 0;
+        var customerFields = new Dictionary<string, string>
+    {
+        { "FirstName", customer.FirstName.ToLower() },
+        { "LastName", customer.LastName.ToLower() },
+        { "Address", customer.Address.ToLower() }
+    };
+
+        foreach (var field in customerFields)
+        {
+            foreach (var token in searchTokens)
+            {
+                if (field.Value.Equals(token, StringComparison.OrdinalIgnoreCase)) // Full match
+                {
+                    score += weights[field.Key] * 4;
+                }
+                else if (field.Value.Contains(token)) // Partial match
+                {
+                    score += weights[field.Key] * 2;
+                }
+                else
+                {
+                    if (searchString.Split(' ').Any(field.Value.Contains)) // Any match
+                    {
+                        score += weights[field.Key];
+                    }
+                }
+            }
+        }
+
+        return score;
+    }
+
+
 }
