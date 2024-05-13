@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SearchByTokens")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57f14239dd56a904f4540f0791b339524c7d9ddb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b4760df9ddea926cc0d6296cca02f48d6c370e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SearchByTokens")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SearchByTokens")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

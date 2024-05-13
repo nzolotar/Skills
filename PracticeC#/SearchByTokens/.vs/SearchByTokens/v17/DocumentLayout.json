@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{6465D57C-8D5C-4226-9FD4-9F276C1AC0AC}|SearchByTokens.csproj|c:\\code\\practice\\skills\\practicec#\\searchbytokens\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6465D57C-8D5C-4226-9FD4-9F276C1AC0AC}|SearchByTokens.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6465D57C-8D5C-4226-9FD4-9F276C1AC0AC}|SearchByTokens.csproj|c:\\code\\practice\\skills\\practicec#\\searchbytokens\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{6465D57C-8D5C-4226-9FD4-9F276C1AC0AC}|SearchByTokens.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,9 +64,22 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Code\\PRACTICE\\Skills\\PracticeC#\\SearchByTokens\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAiwEwAAAAAAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAiwC0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-13T03:46:22.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Code\\PRACTICE\\Skills\\PracticeC#\\SearchByTokens\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Code\\PRACTICE\\Skills\\PracticeC#\\SearchByTokens\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-13T04:49:23.556Z",
               "EditorCaption": ""
             }
           ]
