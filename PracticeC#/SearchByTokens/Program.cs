@@ -35,7 +35,7 @@ class Solution
              new string[] { "customer", "John", "Doe", "123 Main St" },
              new string[] { "customer", "Jane", "Smith", "456 Elm St" },
              new string[] { "customer", "Jennifer", "Potz", "333 4th South St" },
-             new string[] { "search", "Jennifer" }
+             new string[] { "search", "Jenni Potz" }
          };
 
         var weights = lines.Where(l => l[0] == "weight")
@@ -72,6 +72,8 @@ class Solution
     {
         var results = new List<SearchResult>();
         var searchTokens = TokenizeSearchString(searchString);
+        //sum of all weights into var 
+        var maxweights = weights.Values.Sum() * 4;
 
         foreach (var customer in customers)
         {
@@ -80,7 +82,7 @@ class Solution
             //if full match by token then return weight 400% per field
             CheckFullMatch(customer, searchTokens, weights, ref score);
 
-            if (score == 0)
+            if (score != maxweights)
             {
                 //if partial match by token then return weight 200% per field
                 CheckPartialMatch(customer, searchTokens, weights, ref score);
