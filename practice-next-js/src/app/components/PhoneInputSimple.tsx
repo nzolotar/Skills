@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 
-const PhoneInput = () => {
+const PhoneInputSimple = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const formatPhoneNumber = (value: string) => {
@@ -10,7 +10,10 @@ const PhoneInput = () => {
     const input = value.replace(/\D/g, "");
 
     // Format the input
-    const formattedInput = input.replace(/^(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
+    const formattedInput = input.replace(
+      /^(\d{3})(\d{3})(\d{4})/,
+      "($1) $2-$3"
+    );
 
     return formattedInput;
   };
@@ -21,11 +24,12 @@ const PhoneInput = () => {
   };
   return (
     <input
-      type="text"
+      maxLength={10}
+      type="tel"
       value={phoneNumber}
       placeholder="Enter phone number"
       onChange={handlePhoneChange}
     />
   );
 };
-export default PhoneInput;
+export default PhoneInputSimple;
