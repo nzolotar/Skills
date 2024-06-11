@@ -53,9 +53,9 @@ const process2 = (books, reviews, limit) => {
     reviews
       .filter((e) => books.map((y) => y.isbn).includes(e.isbn)) //intersect
       .slice() //shallow copy
-      .sort((a, b) => b.count - a.count) //sorting in desending order
+      .sort((a, b) => b.count - a.count) //sorting in descending order
       .slice(0, limit) // cut how many top limit
-      .map(({ isbn }) => books.find((book) => book.isbn === isbn).category)
+      .map(({ isbn }) => books.find((book) => book.isbn === isbn).category) //prepare response of categories
       .join(",");
 
   return topWithCount(limit);
