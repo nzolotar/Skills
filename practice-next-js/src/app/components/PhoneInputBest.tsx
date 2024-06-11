@@ -39,7 +39,7 @@ const PhoneInputBest = ({ maxLength = 10 }) => {
     changeInput(formattedValue.join(""));
   };
 
-  //useEffect to set the carret position
+  //useEffect to set the cursor position
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.setSelectionRange(
