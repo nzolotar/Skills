@@ -48,6 +48,22 @@ const process = (books, reviews, limit) => {
   return mostViewedCategory.slice(0, limit);
 };
 
+const process2 = (books, reviews, limit) => {
+  const topWithCount = (limit) =>
+    reviews
+      .filter((e) => books.map((y) => y.isbn).includes(e.isbn)) //intersect
+      .slice() //shallow copy
+      .sort((a, b) => b.count - a.count) //sorting in desending order
+      .slice(0, limit) // cut how many top limit
+      .map(({ isbn }) => books.find((book) => book.isbn === isbn).category)
+      .join(",");
+
+  return topWithCount(limit);
+};
 console.log("TOP 1", process(Books, BooksReviews, 1));
 console.log("TOP 2", process(Books, BooksReviews, 2));
 console.log("TOP 3", process(Books, BooksReviews, 3));
+
+console.log("TOP 1", process2(Books, BooksReviews, 1));
+console.log("TOP 2", process2(Books, BooksReviews, 2));
+console.log("TOP 3", process2(Books, BooksReviews, 3));
