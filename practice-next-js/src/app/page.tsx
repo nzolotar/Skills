@@ -1,7 +1,8 @@
 import Image from "next/image";
 import PhoneInputSimple from "./components/PhoneInputSimple";
 import PhoneInputAdvanced from "./components/PhoneInputAdvanced";
-import PhoneInputBest from "./components/PhoneInputBest";
+import PhoneInputLiveFormatting from "./components/PhoneInputLiveFormatting";
+import DisplayListAsTyping from "./components/DisplayListAsTyping";
 
 export default function Home() {
   return (
@@ -10,10 +11,14 @@ export default function Home() {
         <PhoneInputSimple /> Phone field
       </>
       <>
-        <PhoneInputAdvanced /> Phone field (advanced)
+        <PhoneInputAdvanced /> Phone field (with focus edit)
       </>
       <>
-        <PhoneInputBest maxLength={14} /> Phone field (best)
+        <PhoneInputLiveFormatting maxLength={14} /> Phone field (live)
+      </>
+
+      <>
+        <DisplayListAsTyping />
       </>
 
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
