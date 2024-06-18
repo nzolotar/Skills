@@ -1,4 +1,4 @@
-import { LCTApi } from "./LCTApi"; // Assuming the class is in a file named LCTApi.ts
+import { LCTApi } from "./LCTApi";
 
 const lctApi = new LCTApi();
 
