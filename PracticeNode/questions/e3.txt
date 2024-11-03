@@ -1,0 +1,17 @@
+I need you to write the pseudocode for a function that takes in a list of integers and returns them rearranged into a staircase, if possible, or False otherwise. A staircase is a list of lists where list 0 has length 1, and every list i+1 is one item longer than list i. The order of the elements in the staircase doesn’t matter.
+
+Here are some input/output examples that show what I mean:
+
+Input: [1, 2, 3, 4, 5, 6]
+
+Output: [[1], [2, 3], [4, 5, 6]]
+
+Input: [1, 2, 3, 4, 5, 6, 7]
+
+Output: False
+
+In the example [1, 2, 3, 4, 5, 6, 7], the list of lists only has one element in its fourth list:
+
+[[1], [2, 3], [4, 5, 6], [7]]
+
+That is NOT equal to the length of the previous list plus one. The last list would have to have four elements to be a valid staircase.

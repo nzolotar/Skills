@@ -1,0 +1,90 @@
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+.vs/SearchByTokens/v17
+
+
+#ignore for obj and v17
+obj/
+
+
+### *** required entries below ***
+###
+### Please do not add anything below this line, your changes will be overwritten
+###
+*.iml
+*.iws
+*.launch
+.externalToolBuilders/
+.DS.d74cb6fe
+__MACOSX/
+.idea/
+.nb-gradle/
+.project
+.settings/
+.history/
+atlassian-ide-plugin.xml
+nbactions.xml
+nbbuild/
+nbdist/
+nbproject/private/
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/4d984
+!.vscode/extensions.json
+*.code-workspace
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+*.pidb
+*.resources
+*.userprefs
+*.usertasks
+.vscode/*
+test-results/
+packages/
+*.nupkg
+*.trx
+
+
+
+
+###
+###                                                                                                                                                                                                                                  git#317828
+###

@@ -1,22 +1,20 @@
 {
-  "name": "practicenode",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/app.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "npx tsx",
-    "start": "node src/app.ts"
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "request": "^2.88.2"
   },
-  "keywords": [],
+  "name": "simpleform",
+  "version": "1.0.0",
+  "main": "process.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.14.3",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "axios": "^1.7.2",
-    "jsonwebtoken": "^9.0.2"
-  }
+  "description": ""
 }
