@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import axios, { AxiosResponse } from "axios";
 
-export class LCTApi {
+export class LCTGetToken {
   private readonly orgId: string = "00LCT00000106l11Z8";
   private readonly apiKey: string =
     "872ba32ce620c6c69ea5eb161eaf04ce666a499f6ed204b4";
@@ -16,6 +16,8 @@ export class LCTApi {
       ak: this.apiKey,
       iat: new Date().getTime(),
     };
+
+    //console.log("payload:", payload);
     const payloadBase64 = Buffer.from(JSON.stringify(payload)).toString(
       "base64"
     );
@@ -23,24 +25,24 @@ export class LCTApi {
   }
 
   public async getToken(): Promise<string> {
-    let token = "";
-    try {
-      const response: AxiosResponse = await axios.get(
-        `${this.lctApiPartnerUrl}/v1/get-token`,
-        {
-          headers: {
-            "Payload-Signature": this.generateTokenPayloadSignature(),
-          },
-        }
-      );
-      console.log("response:", response.status, response.data);
-      if (response.status === 200) {
-        token = response.data.token; // Generated Token
-      }
-    } catch (e) {
-      // Handle exceptions
-      console.log("error message:", e.message);
-    }
+    let token = "empty";
+    const tokenPath = `${this.lctApiPartnerUrl}/api-partner/v1/generate-token`;
+    let signature = this.generateTokenPayloadSignature();
+    console.log("getToken:", signature);
+    // try {
+    //   const response: AxiosResponse = await axios.get(tokenPath, {
+    //     headers: {
+    //       "Payload-Signature": signature,
+    //     },
+    //   });
+    //   //console.log("getToken response:", response.status, response.data);
+    //   if (response.status === 200) {
+    //     token = response.data.token; // Generated Token
+    //   }
+    // } catch (e) {
+    //   // Handle exceptions
+    //   console.log("getToken error message:", e.message);
+    // }
     return token;
   }
 }
