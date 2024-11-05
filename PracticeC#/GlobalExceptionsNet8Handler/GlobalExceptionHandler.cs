@@ -14,13 +14,14 @@ public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IE
     {
         var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
+        //logging the exception
         logger.LogError(
             exception,
             "Could not process a request on machine {MachineName}. TraceId: {TraceId}",
             Environment.MachineName,
             traceId
         );
-
+        
         var (statusCode, title) = MapException(exception);
 
         await Results.Problem(
