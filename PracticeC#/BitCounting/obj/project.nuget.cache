@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "iMyyW2i5Z693by6SOwiKuZrpUgmQ2j8Z7Uh4MFbPn4H1jggCtH1feUvY8ACgrsp2kUYFq0oovMwwk4NQi0O3Wg==",
+  "success": true,
+  "projectFilePath": "C:\\Code\\PRACTICE\\Skills\\PracticeC#\\BitCounting\\BitCountingLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\NataliaZolotareva\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\NataliaZolotareva\\.nuget\\packages\\microsoft.dotnet.upgradeassistant.extensions.default.analyzers\\0.4.336902\\microsoft.dotnet.upgradeassistant.extensions.default.analyzers.0.4.336902.nupkg.sha512",
+    "C:\\Users\\NataliaZolotareva\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\NataliaZolotareva\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\NataliaZolotareva\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

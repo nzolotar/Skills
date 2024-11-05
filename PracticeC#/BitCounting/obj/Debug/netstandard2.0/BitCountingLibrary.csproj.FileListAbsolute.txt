@@ -1,0 +1,9 @@
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\bin\Debug\netstandard2.0\BitCounting.Library.deps.json
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\bin\Debug\netstandard2.0\BitCounting.Library.dll
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\bin\Debug\netstandard2.0\BitCounting.Library.pdb
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCountingLibrary.csproj.AssemblyReference.cache
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCountingLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCountingLibrary.csproj.CoreCompileInputs.cache
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCountingLibrary.sourcelink.json
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCounting.Library.dll
+C:\Code\PRACTICE\Skills\PracticeC#\BitCounting\obj\Debug\netstandard2.0\BitCounting.Library.pdb
